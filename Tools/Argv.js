@@ -53,21 +53,23 @@ class Argv {
         onRender(kleur) {
           this.msg = kleur.cyan('documentsDir: 미입력 시 ".env"에 등록된 경로 기본값을 사용합니다.')
         },
-        // validate: (path) => {
-        //   return this.validatePath(path)
-        // },
+        validate: (path) => {
+          return this.validatePath(path)
+        },
       },
     ])
 
     this.documentsType = response.documentsType ? DOCUMENT_TYPE.MXQL : DOCUMENT_TYPE.WIDGET
-    this.documentsDir =
-      response.documentsDir || response.documentsType
-        ? process.env.DEFAULT_MXQL_PATH_ARG
-        : process.env.DEFAULT_WIDGET_PATH_ARG
+    this.documentsDir = response.documentsDir
+      ? response.documentsDir
+      : response.documentsType
+      ? process.env.DEFAULT_MXQL_PATH_ARG
+      : process.env.DEFAULT_WIDGET_PATH_ARG
 
     this.documentsExt = this.documentsType === DOCUMENT_TYPE.MXQL ? '.mql' : '.json'
   }
   validatePath = async (path) => {
+    if (!path) return true
     try {
       if (fse.pathExistsSync(path)) {
         return true
