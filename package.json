@@ -4,8 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "author": "swlee93 <weourusours0to1@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "fs-extra": "^9.1.0",
+    "git-date-extractor": "^4.0.1",
+    "glob": "^7.1.6",
+    "google-spreadsheet": "^3.1.15",
+    "prompts": "^2.4.1"
+  }
 }
