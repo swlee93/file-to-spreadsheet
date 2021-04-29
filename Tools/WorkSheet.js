@@ -38,8 +38,17 @@ class WorkSheet extends Doc {
   addSheet = async () => {
     const title = this.getSheetTitle()
     const headerValues = this.getSheetHeader()
+    const tabColor =
+      this.documentsType === DOCUMENT_TYPE.MXQL
+        ? { red: 25, green: 160, blue: 229, alpha: 1 }
+        : { red: 255, green: 185, blue: 2, alpha: 1 }
 
-    const newSheet = await this.doc.addSheet({ title, headerValues })
+    const newSheet = await this.doc.addSheet({
+      title,
+      headerValues,
+      tabColor,
+      index: 0,
+    })
 
     await this.setCurrentSheet(newSheet)
 
@@ -50,7 +59,17 @@ class WorkSheet extends Doc {
     this.currentSheet = sheet
   }
   getVersionByPath = (path = '') => {
-    const [_, version, target, ...others] = path.split('/')
+    const pathes = path.split('/')
+    const hasVersion = !!pathes[1].includes('v')
+    let names = hasVersion ? [] : ['-']
+    let index = 1
+    while (index < pathes.length) {
+      if (pathes[index]) {
+        names.push(pathes[index])
+      }
+      index++
+    }
+    const [version, target, ...others] = names
     return { version, target, view: others.join('/') }
   }
 

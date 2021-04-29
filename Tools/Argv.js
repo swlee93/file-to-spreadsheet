@@ -51,7 +51,7 @@ class Argv {
         message: 'documentsDir',
 
         onRender(kleur) {
-          this.msg = kleur.cyan('documentsDir: 미입력 시 ".env"에 등록된 경로 기본값을 사용합니다.')
+          this.msg = 'documentsDir: ' + kleur.cyan('*미입력 시 ".env"에 등록된 경로 기본값을 사용합니다.')
         },
         validate: (path) => {
           return this.validatePath(path)
