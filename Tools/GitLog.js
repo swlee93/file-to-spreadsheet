@@ -14,7 +14,7 @@ class GitLog extends Argv {
       return []
     }
 
-    const fileDir = `${__dirname}/../gitlog/${sheetName}.json`
+    const fileDir = `${__dirname}/../.gitlog/${sheetName}.json`
 
     if (fse.existsSync(fileDir)) {
       this.stamps = fse.readJsonSync(fileDir)
