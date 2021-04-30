@@ -8,13 +8,6 @@ class WorkSheet extends Doc {
 
   constructor(props) {
     super(props)
-    this.onLoad()
-  }
-
-  onLoad = async () => {
-    await this.loadArgv()
-    await this.getCurrentSheet()
-    await this.readFileSystem()
   }
 
   getSheetTitle = () => {
